@@ -14,12 +14,11 @@ class DAITask:
         """
         start_date = row['Created Date']
 
-        if row.Progress == 'Completed':
-            end_date = row['Completed Date']
-            start_date = row['Start Date']
-        else:
+        if not row.Progress == 'Completed':
             end_date = dt.date.today()
             start_date = row['Created Date']
+        else:
+            return 0
 
         if pd.isnull(start_date):
             start_date = end_date - dt.timedelta(start_default)
